@@ -12,6 +12,7 @@ void Player::processKeyBoardInput(keyBoardIn input, double deltaTime)
     glm::vec3 oldPos = camera.getPos();
 
     camera.processKeyBoardInput(input, deltaTime);
+
     box.setPos(camera.getPos());
 
     if (checkCollision())

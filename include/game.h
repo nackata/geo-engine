@@ -12,6 +12,7 @@
 #include "attachedbutton.h"
 #include "screentext.h"
 #include "soundmaster.h"
+#include "objectfactory.h"
 
 #include "glm/glm.hpp"
 
@@ -26,10 +27,9 @@ class Game
 {
     enum ObjectType
     {
-        ROTATING_CUBE,
-        STAND,
-        ATTACHED_BUTTON,
-        BUTTON
+        Interactive,
+        NonInteractive,
+        Static
     };
 
     struct ScreenStr
@@ -50,8 +50,6 @@ class Game
 
 
     ObjectType getClass(const std::string & id);
-    DynamicInter * getDynamicInterObj(QJsonObject & obj, ObjectType type);
-    DynamicNonInter * getDynamicNonInterObj(QJsonObject & obj, ObjectType type);
 
     // main parts of game
 
@@ -63,6 +61,11 @@ class Game
     Renderer renderer;
     ScreenText text;
     SoundMaster sound;
+
+
+    void addObj(StaticObject * obj);
+    void addObj(DynamicNonInter * obj);
+    void addObj(DynamicInter * obj);
 
 public:
 

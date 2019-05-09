@@ -2,11 +2,10 @@
     "Objects": {
         "dynamic_objects": [
             {
-                "ID": "1002-0001",
+                "ID": "004-0001",
                 "dependencies": [
                 ],
                 "filename": "common/lvl1_buttonCenter.obj",
-		"collision_check": false,
                 "position": {
                     "X": 0,
                     "Y": -0.375,
@@ -25,11 +24,10 @@
                 }
             },
             {
-                "ID": "1002-0002",
+                "ID": "004-0002",
                 "dependencies": [
                 ],
                 "filename": "common/lvl1_buttonCenter.obj",
-		"collision_check": false,
                 "position": {
                     "X": -2,
                     "Y": -0.37000000476837158,
@@ -48,11 +46,10 @@
                 }
             },
             {
-                "ID": "1002-0003",
+                "ID": "004-0003",
                 "dependencies": [
                 ],
                 "filename": "common/lvl1_buttonCenter.obj",
-		"collision_check": false,
                 "position": {
                     "X": 2,
                     "Y": -0.37000000476837158,
@@ -71,14 +68,13 @@
                 }
             },
             {
-                "ID": "1001-0001",
+                "ID": "003-0001",
                 "dependencies": [
                     {
-                        "ID": "2002-0001"
+                        "ID": "002-0001"
                     }
                 ],
                 "filename": "common/lvl1_buttonCenter.obj",
-		"collision_check": false,
                 "position": {
                     "X": 0,
                     "Y": -2.7320001125335693,
@@ -97,7 +93,7 @@
                 }
             },
             {
-                "ID": "2001-0001",
+                "ID": "001-0001",
                 "axes": {
                     "X": 0,
                     "Y": 1,
@@ -106,11 +102,10 @@
                 "current_state": 1,
                 "dependencies": [
                     {
-                        "ID": "1002-0003"
+                        "ID": "004-0003"
                     }
                 ],
                 "filename": "common/box.obj",
-		"collision_check": false,
                 "need_state": 3,
                 "position": {
                     "X": 2,
@@ -118,10 +113,10 @@
                     "Z": 3.5295000076293945
                 },
                 "rotation": {
-                    "W": -0.043189823627471924,
-                    "X": 0.3091048002243042,
-                    "Y": 0.88715481758117676,
-                    "Z": -0.33992668986320496
+                    "W": 0.75591766834259033,
+                    "X": 0.44695204496383667,
+                    "Y": 0.46636691689491272,
+                    "Z": 0.10644251853227615
                 },
                 "scale": {
                     "X": 0.34999999403953552,
@@ -131,20 +126,19 @@
                 "velocity": 20
             },
             {
-                "ID": "2001-0003",
+                "ID": "001-0003",
                 "axes": {
                     "X": 0,
                     "Y": 1,
                     "Z": 0
                 },
-                "current_state": 2,
+                "current_state": 1,
                 "dependencies": [
                     {
-                        "ID": "1002-0002"
+                        "ID": "004-0002"
                     }
                 ],
                 "filename": "common/box.obj",
-		"collision_check": false,
                 "need_state": 2,
                 "position": {
                     "X": -2,
@@ -152,10 +146,10 @@
                     "Z": 3.5295000076293945
                 },
                 "rotation": {
-                    "W": -0.27090594172477722,
-                    "X": -0.40874117612838745,
-                    "Y": -0.84588110446929932,
-                    "Z": 0.20982359349727631
+                    "W": 0.60977941751480103,
+                    "X": -0.013727607205510139,
+                    "Y": -0.64581447839736938,
+                    "Z": 0.45924615859985352
                 },
                 "scale": {
                     "X": 0.34999999403953552,
@@ -165,20 +159,19 @@
                 "velocity": -20
             },
             {
-                "ID": "2001-0002",
+                "ID": "001-0002",
                 "axes": {
                     "X": 0,
                     "Y": 1,
                     "Z": 0
                 },
-                "current_state": 1,
+                "current_state": 5,
                 "dependencies": [
                     {
-                        "ID": "1002-0001"
+                        "ID": "004-0001"
                     }
                 ],
                 "filename": "common/box.obj",
-		"collision_check": false,
                 "need_state": 4,
                 "position": {
                     "X": 0,
@@ -199,20 +192,19 @@
                 "velocity": 0
             },
             {
-                "ID": "2002-0001",
+                "ID": "002-0001",
                 "dependencies": [
                     {
-                        "ID": "2001-0001"
+                        "ID": "001-0001"
                     },
                     {
-                        "ID": "2001-0002"
+                        "ID": "001-0002"
                     },
                     {
-                        "ID": "2001-0003"
+                        "ID": "001-0003"
                     }
                 ],
                 "filename": "common/lvl1_stand.obj",
-		"collision_check": true,
                 "new_position": {
                     "X": 0,
                     "Y": -1.2899999618530273,
@@ -253,13 +245,13 @@
         ]
     },
     "Player": {
-        "cam_pitch": -11.300047874450684,
+        "cam_pitch": -6.9000444412231445,
         "cam_position": {
-            "X": -0.17030882835388184,
+            "X": -0.010958816856145859,
             "Y": 0,
-            "Z": -4.1721057891845703
+            "Z": -4.0783510208129883
         },
-        "cam_yaw": 92.600616455078125
+        "cam_yaw": 87.900505065917969
     },
     "lights": [
         {

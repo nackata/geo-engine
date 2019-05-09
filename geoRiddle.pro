@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     src/stand.cpp \
     src/attachedbutton.cpp \
     src/screentext.cpp \
-    src/soundmaster.cpp
+    src/soundmaster.cpp \
+    src/objectfactory.cpp
 
 HEADERS += \
     include/fpsCam.h \
@@ -55,7 +56,8 @@ HEADERS += \
     include/attachedbutton.h \
     include/tojsonconvert.h \
     include/screentext.h \
-    include/soundmaster.h
+    include/soundmaster.h \
+    include/objectfactory.h
 
 DISTFILES += \
     common/shaders/fragment_shader.glsl \

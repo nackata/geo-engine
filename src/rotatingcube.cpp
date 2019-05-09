@@ -60,6 +60,7 @@ QJsonObject RotatingCube::save()
     dynInterObj.insert("rotation", ToJson::quatToObj(model.getRotation()));
     dynInterObj.insert("current_state", static_cast<int>(currentState));
     dynInterObj.insert("need_state", static_cast<int>(needState));
+    dynInterObj.insert("collision_check", collisionCheck);
     QJsonArray dependArr;
     for (DynamicObject * dep : getDepend())
     {

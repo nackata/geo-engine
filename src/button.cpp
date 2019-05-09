@@ -24,6 +24,7 @@ QJsonObject Button::save()
     dynInterObj.insert("scale", ToJson::vectorToObj(model.getScale()));
     dynInterObj.insert("position", ToJson::vectorToObj(model.getPosition()));
     dynInterObj.insert("rotation", ToJson::quatToObj(model.getRotation()));
+    dynInterObj.insert("collision_check", collisionCheck);
     QJsonArray dependArr;
     for (DynamicObject * dep : getDepend())
     {

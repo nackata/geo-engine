@@ -30,6 +30,7 @@ class Renderer
 
     bool dirLight = true;
     glm::vec3 directionDirLight{0.32, -1.0, 0.12};
+
 public:
     void setDirLight(bool dl) { dirLight = dl; }
 
