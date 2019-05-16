@@ -35,6 +35,12 @@ public:
     void update(double deltaTime);
 
     QJsonObject save();
+
+    std::string report(std::string const & msg) const
+    {
+        return DynamicNonInter::report(msg) + "Stand <- " + msg;
+    }
+
 };
 
 

@@ -14,6 +14,12 @@ void Button::update(double deltaTime, FpsCam &cam)
         timer = 10.0;
         this->trigerred = true;
     }
+
+    if (cam.deletion() && checkIsTriggered(cam))
+    {
+        timer = 10.0;
+        model.switchRender();
+    }
 }
 
 QJsonObject Button::save()

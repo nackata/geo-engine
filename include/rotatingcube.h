@@ -44,6 +44,12 @@ public:
     void setNeedState(state st){ needState = st; }
     void setCurrState(state st){ currentState = st;
                                  model.setDiffuseColor(getRgbColor(currentState)); }
+
+    std::string report(std::string const & msg) const
+    {
+        return DynamicNonInter::report(msg) + "Rotating cube <- " + msg;
+    }
+
 protected:
     state needState = STATE_BLACK;
     state currentState = STATE_WHITE;

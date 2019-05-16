@@ -3,6 +3,7 @@
 #include "aabb.h"
 #include "model.h"
 #include "tojsonconvert.h"
+#include "testalgo.h"
 
 class Object
 {   
@@ -16,4 +17,10 @@ public:
     Model model;
 
     bool aabbIntersects(AABB & a);
+
+    virtual std::string report(std::string const & msg) const
+    {
+        return "Object <- ";
+    }
+
 };

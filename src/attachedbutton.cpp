@@ -22,6 +22,12 @@ void AttachedButton::update(double deltaTime, FpsCam &cam)
                       dependencies[0]->model.getPosition().y + 0.918,
                       dependencies[0]->model.getPosition().z - 0.03);
 
+    if (cam.deletion() && checkIsTriggered(cam))
+    {
+        timer = 10.0;
+        model.switchRender();
+    }
+
 
 }
 

@@ -23,6 +23,7 @@ public:
     bool checkCollision();
 
     void setAction(bool act) { camera.setAction(act); }
+    void setDeletion(bool deletion) { camera.setDeletion(deletion); }
 
     void setPosition(glm::vec3 pos) {
         camera.setPos(pos);

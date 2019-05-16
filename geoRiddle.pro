@@ -14,7 +14,6 @@ SOURCES += main.cpp \
     src/model.cpp \
     src/shader.cpp \
     src/sceneobject.cpp \
-    src/renderer.cpp \
     src/dynamicobject.cpp \
     src/rotatingcube.cpp \
     src/scene.cpp \
@@ -28,7 +27,10 @@ SOURCES += main.cpp \
     src/attachedbutton.cpp \
     src/screentext.cpp \
     src/soundmaster.cpp \
-    src/objectfactory.cpp
+    src/objectfactory.cpp \
+    src/testalgo.cpp \
+    src/oglrenderer.cpp \
+    src/keyboardmanager.cpp
 
 HEADERS += \
     include/fpsCam.h \
@@ -40,7 +42,6 @@ HEADERS += \
     include/staticobject.h \
     include/room.h \
     include/light.h \
-    include/renderer.h \
     include/dynamicobject.h \
     include/rotatingcube.h \
     include/scene.h \
@@ -57,7 +58,13 @@ HEADERS += \
     include/tojsonconvert.h \
     include/screentext.h \
     include/soundmaster.h \
-    include/objectfactory.h
+    include/objectfactory.h \
+    include/stella.h \
+    include/sphere.h \
+    include/testalgo.h \
+    include/oglrenderer.h \
+    include/renderer.h \
+    include/keyboardmanager.h
 
 DISTFILES += \
     common/shaders/fragment_shader.glsl \

@@ -1,7 +1,7 @@
 #include "../include/inputmanager.h"
 
 
-void InputManager::processMouseInput()
+void ProtectedInputManager::processMouseInput()
 {
     double x;
     double y;
@@ -24,49 +24,15 @@ void InputManager::processMouseInput()
     player->processMouseMovement(xoffset, yoffset);
 }
 
-void InputManager::processKeyboardInput(double delta)
+void ProtectedInputManager::processKeyboardInput(double delta, bool withDeletion)
 {
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-    {
-        player->processKeyBoardInput(FORWARD, delta);
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-    {
-        player->processKeyBoardInput(BACKWARD, delta);
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-    {
-        player->processKeyBoardInput(LEFT, delta);
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-    {
-        player->processKeyBoardInput(RIGHT, delta);
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-    {
-        player->processKeyBoardInput(UP, delta);
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-    {
-        player->processKeyBoardInput(DOWN, delta);
-    }
-
-    if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-    {
-        player->setAction(true);
-    }
-    else
-    {
-        player->setAction(false);
-    }
+    keyManager->getAction(window, player, delta, withDeletion);
 }
 
+
+bool InputManager::checkAutho(const std::string &name)
+{
+    if (name == "nockato" || name == "admin") return true;
+
+    return false;
+}

@@ -16,6 +16,11 @@ public:
 
     bool checkIsTriggered(FpsCam & cam);
 
+    virtual std::string report(std::string const & msg) const
+    {
+        return DynamicObject::report(msg) + "Interactive <- ";
+    }
+
 protected:
     int timer = 0;
 };

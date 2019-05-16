@@ -26,6 +26,12 @@ public:
     std::string & getId() { return ID; }
 
     std::vector<DynamicObject*> getDepend() { return dependencies; }
+
+    virtual std::string report(std::string const & msg) const
+    {
+        return Object::report(msg) + "Dynamic <- ";
+    }
+
 protected:
     std::vector<DynamicObject*> dependencies;
 

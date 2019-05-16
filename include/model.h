@@ -80,6 +80,9 @@ class Model
 
         void setDiffuseColor(glm::vec3 color);
 
+        bool switchRender() { return render = !render; }
+        bool toRender() { return render; }
+
     private:
         /*  Model Data  */
         std::vector<Mesh> meshes;
@@ -107,4 +110,6 @@ class Model
 
             boundSphereRad *= scaleVal;
         }
+
+        bool render = true;
 };

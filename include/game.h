@@ -2,6 +2,7 @@
 
 #include "scene.h"
 #include "renderer.h"
+#include "oglrenderer.h"
 #include "player.h"
 #include "inputmanager.h"
 #include "tojsonconvert.h"
@@ -55,10 +56,10 @@ class Game
 
     ScreenStr currentStr;
 
+    Renderer * renderer;
     InputManager input;
     Player player;
     Scene scene;
-    Renderer renderer;
     ScreenText text;
     SoundMaster sound;
 
@@ -67,37 +68,40 @@ class Game
     void addObj(DynamicNonInter * obj);
     void addObj(DynamicInter * obj);
 
+    void addObject(Object *obj);
+
 public:
 
     void drawScene() {
-        renderer.drawScene();
+        renderer->drawScene();
         text.RenderText(currentStr.str, currentStr.x, currentStr.y, currentStr.scale, glm::vec3(1.0, 1.0, 1.0));
-        renderer.swapBuffer();
+        renderer->swapBuffer();
     }
 
-    void procInput() { input.processInput(renderer.getDelta()); }
+    void procInput(std::string const& name = "lol") { input.processInput(renderer->getDelta(), name); }
 
     void updateScene() {
-        scene.updateScene(renderer.getDelta());
+        scene.updateScene(renderer->getDelta());
         sound.update(scene.dynamicInterObjects());
     }
 
     bool shouldClose();
 
     Game() {
-         renderer.setCam(player.getCameraPtr());
-         renderer.init();
-         scene.setCam(player.getCameraPtr());
-         input.setPlayer(&player);
-         input.setWin(renderer.getWin());
+        renderer = new OpenGlRenderer();
+        renderer->setCam(player.getCameraPtr());
+        renderer->init();
+        scene.setCam(player.getCameraPtr());
+        input.setPlayer(&player);
+        input.setWin(renderer->getWin());
 
-         text = ScreenText(renderer.getWin());
-         currentStr.str = "wasd - move | e - interact | mouse - camera control";
-         currentStr.x = 400;
-         currentStr.y = 100;
-         currentStr.scale = 1.0;
+        text = ScreenText(renderer->getWin());
+        currentStr.str = "wasd - move | e - interact | mouse - camera control";
+        currentStr.x = 400;
+        currentStr.y = 100;
+        currentStr.scale = 1.0;
 
-         sound.loopAmbient();
+        sound.loopAmbient();
     }
 
 

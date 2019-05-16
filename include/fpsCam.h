@@ -39,6 +39,7 @@ class FpsCam
     float zoom;
 
     bool actionButton = false;
+    bool deletionButton = false;
 
     glm::vec3 camPos;
     glm::vec3 camDir;
@@ -78,6 +79,9 @@ public:
 
     void setAction(bool act) { actionButton = act; }
     bool action() { return actionButton; }
+
+    void setDeletion(bool deletion) { deletionButton = deletion; }
+    bool deletion() { return deletionButton; }
 
     void processKeyBoardInput(keyBoardIn input, double deltaTime);
     void processMouseMovement(double xoffset, double yoffset, bool constraint = true);

@@ -172,7 +172,7 @@ bool Game::jsonStringToEntities(std::string & jsonStr)
         light->setPosition(ToJson::objToVec(lightObj.value("position").toObject()));
 
         scene.addLight(light);
-        renderer.addLight(light);
+        renderer->addLight(light);
     }
 
     // static objects
@@ -185,12 +185,9 @@ bool Game::jsonStringToEntities(std::string & jsonStr)
     {
         QJsonObject staticObj = staticObjArr.at(i).toObject();
 
-        Room * room = ObjectFactory::createStaticObject(staticObj);
+        StaticObject * room = ObjectFactory::createStaticObject(staticObj);
 
         if (room) addObj(room);
-
-        if (room->collisionCheck)
-            player.addObj(room);
     }
 
     // dynamic objects
@@ -209,9 +206,6 @@ bool Game::jsonStringToEntities(std::string & jsonStr)
             DynamicInter * obj = ObjectFactory::createInterObject(dynObj);
 
             if (obj) addObj(obj);
-
-            if (obj->collisionCheck)
-                player.addObj(obj);
         }
 
         if (type == ObjectType::NonInteractive)
@@ -219,9 +213,6 @@ bool Game::jsonStringToEntities(std::string & jsonStr)
             DynamicNonInter * obj = ObjectFactory::createNonInterObject(dynObj);
 
             if (obj) addObj(obj);
-
-            if (obj->collisionCheck)
-                player.addObj(obj);
         }
 
         QJsonArray dpnArr = dynObj.value("dependencies").toArray();
@@ -244,37 +235,44 @@ bool Game::jsonStringToEntities(std::string & jsonStr)
         }
     }
 
-
     return true;
 }
 
-// eto tupa pashalka v kode, krasava
+// eto tipa pashalka v kode, krasava
 
 void Game::addObj(StaticObject *obj)
 {
     scene.addObj(obj);
-    renderer.addObj(obj);
+    addObject(obj);
 }
 
 void Game::addObj(DynamicNonInter *obj)
 {
     scene.addObj(obj);
-    renderer.addObj(obj);
+    addObject(obj);
 }
 
 void Game::addObj(DynamicInter *obj)
 {
     scene.addObj(obj);
-    renderer.addObj(obj);
+    addObject(obj);
+}
+
+void Game::addObject(Object *obj)
+{
+    renderer->addObj(obj);
+
+    if (obj->collisionCheck)
+        player.addObj(obj);
 }
 
 bool Game::shouldClose()
 {
-    if (renderer.shouldClose()) return true;
+    if (renderer->shouldClose()) return true;
 
     if (scene.finished())
     {
-        currentStr.str = "YOU WON! Press esc to leave";
+       currentStr.str = "YOU WON! Press esc to leave";
        currentStr.x = 600;
        currentStr.y = 100;
        currentStr.scale = 1.5;

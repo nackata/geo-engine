@@ -10,6 +10,11 @@ public:
     AttachedButton(std::string modelPath, std::string ID) : DynamicInter(modelPath, ID) {}
 
     QJsonObject save();
+
+    std::string report(std::string const & msg) const
+    {
+        return DynamicInter::report(msg) + "Attached Button <- " + msg;
+    }
 };
 
 

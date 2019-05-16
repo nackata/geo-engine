@@ -1,5 +1,11 @@
 #include "../include/objectfactory.h"
 
+std::array<StaticObject*, 3> ObjectFactory::prototypes =
+{
+   new Room("dummy"),
+   new Stella("dummy"),
+   new Sphere("dummy")
+};
 
 
 ObjectFactory::InterObjType ObjectFactory::interType(const std::__cxx11::string &id)
@@ -20,17 +26,22 @@ ObjectFactory::NonInterObjType ObjectFactory::nonInterType(const std::__cxx11::s
     return (NonInterObjType)number;
 }
 
-Room *ObjectFactory::createStaticObject(QJsonObject &staticObj)
+StaticObject *ObjectFactory::createStaticObject(QJsonObject &staticObj)
 {
-    Room * room = new Room(staticObj.value("fileName").toString().toStdString());
+
+    StaticObject * room = prototypes.at(0)->clone(staticObj.value("fileName").toString().toStdString());
+
     room->collisionCheck = staticObj.value("collision_check").toBool();
 
+    std::cout << room->report("created!") << std::endl;
     return room;
 }
 
 DynamicNonInter *ObjectFactory::createNonInterObject(QJsonObject &obj)
 {
     NonInterObjType type = nonInterType(obj.value("ID").toString().toStdString());
+
+    DynamicNonInter * object = nullptr;
 
     switch (type)
     {
@@ -45,7 +56,8 @@ DynamicNonInter *ObjectFactory::createNonInterObject(QJsonObject &obj)
             stand->setVelocity(obj.value("velocity").toDouble());
             stand->collisionCheck = obj.value("collision_check").toBool();
 
-            return stand;
+            object = static_cast<DynamicNonInter*>(stand);
+            break;
         }
         case ROTATING_CUBE:
         {
@@ -60,17 +72,23 @@ DynamicNonInter *ObjectFactory::createNonInterObject(QJsonObject &obj)
             cube->setAxis(ToJson::objToVec(obj.value("axes").toObject()));
             cube->collisionCheck = obj.value("collision_check").toBool();
 
-            return cube;
+            object = static_cast<DynamicNonInter*>(cube);
+            break;
         }
         default:
             return nullptr;
     }
+
+    std::cout << object->report("created!") << std::endl;
+    return object;
 
 }
 
 DynamicInter *ObjectFactory::createInterObject(QJsonObject &dynObj)
 {
     InterObjType type = interType(dynObj.value("ID").toString().toStdString());
+
+    DynamicInter * object = nullptr;
 
     switch (type)
     {
@@ -83,7 +101,8 @@ DynamicInter *ObjectFactory::createInterObject(QJsonObject &dynObj)
             but->model.setScale(ToJson::objToVec(dynObj.value("scale").toObject()));
             but->collisionCheck = dynObj.value("collision_check").toBool();
 
-            return but;
+            object = static_cast<DynamicInter*>(but);
+            break;
         }
         case InterObjType::ATTACHED_BUTTON:
         {
@@ -94,9 +113,13 @@ DynamicInter *ObjectFactory::createInterObject(QJsonObject &dynObj)
             but->model.setScale(ToJson::objToVec(dynObj.value("scale").toObject()));
             but->collisionCheck = dynObj.value("collision_check").toBool();
 
-            return but;
+            object = static_cast<DynamicInter*>(but);
+            break;
         }
         default:
             return nullptr;
     }
+
+    std::cout << object->report("created!") << std::endl;
+    return object;
 }
