@@ -17,6 +17,8 @@ bool Object::aabbIntersects(AABB & a)
     std::vector<Mesh> meshes = model.getMeshes();
     glm::mat4 modelMat = model.getModel();
 
+    TestAlgo * test = new TestAdapter();
+
     for(Mesh & m: meshes)
     {
         std::vector<Vertex> vertices = m.getVertices();
@@ -30,7 +32,7 @@ bool Object::aabbIntersects(AABB & a)
             triangle.at(1) = glm::vec3(modelMat * glm::vec4(vertices[indices[i + 1]].Position, 1.0));
             triangle.at(2) = glm::vec3(modelMat * glm::vec4(vertices[indices[i + 2]].Position, 1.0));
 
-            if (TestAlgo::aabbTriangleTest(a, triangle))  return true;
+            if (test->aabbTriangleTest(a, triangle))  return true;
         }
     }
 

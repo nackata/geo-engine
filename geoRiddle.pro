@@ -64,7 +64,8 @@ HEADERS += \
     include/testalgo.h \
     include/oglrenderer.h \
     include/renderer.h \
-    include/keyboardmanager.h
+    include/keyboardmanager.h \
+    include/aabbtritest.h
 
 DISTFILES += \
     common/shaders/fragment_shader.glsl \

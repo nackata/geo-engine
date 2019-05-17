@@ -4,9 +4,34 @@
 
 #include <glm/glm.hpp>
 
+class Stand;
+
+class StandState
+{
+public:
+
+    virtual void update(double deltaTime, Stand & stand) = 0;
+};
+
+class MovingState : public StandState
+{
+public:
+
+    void update(double deltaTime, Stand & stand);
+};
+
+class StandingState : public StandState
+{
+public:
+
+    void update(double deltaTime, Stand & stand);
+};
+
+
+
 class Stand : public DynamicNonInter
 {
-    double velocity = 0; // degrees per second
+    double velocity = 0;
 
     glm::vec3 newPos;
     glm::vec3 oldPos;
@@ -15,9 +40,22 @@ class Stand : public DynamicNonInter
 
     float path = 0.0;
 
-    bool move = false;
+    StandState * current;
+
+    void setState(StandState * state)
+    {
+        delete current;
+        current = state;
+    }
+
+    friend class MovingState;
+    friend class StandingState;
+
 public:
-    Stand(std::string fileName, std::string ID) : DynamicNonInter(fileName, ID) {}
+    Stand(std::string fileName, std::string ID) : DynamicNonInter(fileName, ID)
+    {
+        current = new StandingState();
+    }
 
     void setVelocity(double vel) { velocity = vel; }
     double veloc() { return velocity; }
@@ -30,8 +68,6 @@ public:
         direction = glm::normalize(direction);
     }
 
-    void setMove(bool isMove) { move = isMove; }
-
     void update(double deltaTime);
 
     QJsonObject save();
@@ -42,6 +78,8 @@ public:
     }
 
 };
+
+
 
 
 

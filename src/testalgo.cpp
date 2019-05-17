@@ -1,8 +1,6 @@
 #include "../include/testalgo.h"
 
-int triBoxOverlap(float boxcenter[3],float boxhalfsize[3],float triverts[3][3]);
-
-bool TestAlgo::aabbTriangleTest(AABB &box, const std::array<glm::vec3, 3> &triangle)
+bool TestAdapter::aabbTriangleTest(AABB &box, const std::array<glm::vec3, 3> &triangle)
 {
     float center[3];
     center[0] = box.getCenter().x;

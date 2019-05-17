@@ -2,25 +2,7 @@
 
 void Stand::update(double deltaTime)
 {
-    if (dependencies.size() != 3) return;
-
-    move = dependencies[0]->isTrigerred() && dependencies[1]->isTrigerred() && dependencies[2]->isTrigerred();
-
-    if (!move) return;
-
-    float dist = deltaTime * velocity + path;
-
-    glm::vec3 currPos = oldPos + (direction * dist);
-
-    if (glm::length(currPos - oldPos) > distance)
-    {
-        move = false;
-        return;
-    }
-
-    model.setPosition(currPos);
-
-    path = dist;
+    current->update(deltaTime, *this);
 }
 
 QJsonObject Stand::save()
@@ -47,3 +29,43 @@ QJsonObject Stand::save()
     return dynInterObj;
 }
 
+
+
+
+void MovingState::update(double deltaTime, Stand & stand)
+{
+
+    if (!(stand.dependencies[0]->isTrigerred() &&
+        stand.dependencies[1]->isTrigerred() &&
+        stand.dependencies[2]->isTrigerred()))
+    {
+        stand.setState(new StandingState);
+        return;
+    }
+
+    float dist = deltaTime * stand.velocity + stand.path;
+
+    glm::vec3 currPos = stand.oldPos + (stand.direction * dist);
+
+    if (glm::length(currPos - stand.oldPos) > stand.distance)
+    {
+        stand.setState(new StandingState);
+        return;
+    }
+
+    stand.model.setPosition(currPos);
+
+    stand.path = dist;
+}
+
+void StandingState::update(double deltaTime, Stand & stand)
+{
+    if (stand.dependencies.size() != 3) return;
+
+    if (stand.dependencies[0]->isTrigerred() &&
+        stand.dependencies[1]->isTrigerred() &&
+        stand.dependencies[2]->isTrigerred())
+    {
+        stand.setState(new MovingState);
+    }
+}

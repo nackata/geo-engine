@@ -185,7 +185,8 @@ DIST          = common/shaders/fragment_shader.glsl \
 		include/testalgo.h \
 		include/oglrenderer.h \
 		include/renderer.h \
-		include/keyboardmanager.h main.cpp \
+		include/keyboardmanager.h \
+		include/aabbtritest.h main.cpp \
 		src/fpsCam.cpp \
 		src/mesh.cpp \
 		src/model.cpp \
@@ -367,7 +368,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents include/fpsCam.h include/mesh.h include/model.h include/shader.h include/stb_image.h include/sceneobject.h include/staticobject.h include/room.h include/light.h include/dynamicobject.h include/rotatingcube.h include/scene.h include/dynamicnoninter.h include/game.h include/dynamicinter.h include/button.h include/player.h include/aabb.h include/inputmanager.h include/color.h include/stand.h include/attachedbutton.h include/tojsonconvert.h include/screentext.h include/soundmaster.h include/objectfactory.h include/stella.h include/sphere.h include/testalgo.h include/oglrenderer.h include/renderer.h include/keyboardmanager.h $(DISTDIR)/
+	$(COPY_FILE) --parents include/fpsCam.h include/mesh.h include/model.h include/shader.h include/stb_image.h include/sceneobject.h include/staticobject.h include/room.h include/light.h include/dynamicobject.h include/rotatingcube.h include/scene.h include/dynamicnoninter.h include/game.h include/dynamicinter.h include/button.h include/player.h include/aabb.h include/inputmanager.h include/color.h include/stand.h include/attachedbutton.h include/tojsonconvert.h include/screentext.h include/soundmaster.h include/objectfactory.h include/stella.h include/sphere.h include/testalgo.h include/oglrenderer.h include/renderer.h include/keyboardmanager.h include/aabbtritest.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp src/fpsCam.cpp src/mesh.cpp src/model.cpp src/shader.cpp src/sceneobject.cpp src/dynamicobject.cpp src/rotatingcube.cpp src/scene.cpp src/game.cpp src/dynamicinter.cpp src/button.cpp src/player.cpp src/inputmanager.cpp src/aabbtritest.cpp src/stand.cpp src/attachedbutton.cpp src/screentext.cpp src/soundmaster.cpp src/objectfactory.cpp src/testalgo.cpp src/oglrenderer.cpp src/keyboardmanager.cpp $(DISTDIR)/
 
 
@@ -416,6 +417,7 @@ main.o: main.cpp include/game.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/dynamicnoninter.h \
 		include/dynamicobject.h \
 		include/dynamicinter.h \
@@ -483,7 +485,8 @@ sceneobject.o: src/sceneobject.cpp include/sceneobject.h \
 		include/mesh.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
-		include/testalgo.h
+		include/testalgo.h \
+		include/aabbtritest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sceneobject.o src/sceneobject.cpp
 
 dynamicobject.o: src/dynamicobject.cpp include/dynamicobject.h \
@@ -494,7 +497,8 @@ dynamicobject.o: src/dynamicobject.cpp include/dynamicobject.h \
 		include/mesh.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
-		include/testalgo.h
+		include/testalgo.h \
+		include/aabbtritest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dynamicobject.o src/dynamicobject.cpp
 
 rotatingcube.o: src/rotatingcube.cpp include/rotatingcube.h \
@@ -508,6 +512,7 @@ rotatingcube.o: src/rotatingcube.cpp include/rotatingcube.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/color.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rotatingcube.o src/rotatingcube.cpp
 
@@ -521,6 +526,7 @@ scene.o: src/scene.cpp include/scene.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/dynamicnoninter.h \
 		include/dynamicobject.h \
 		include/dynamicinter.h \
@@ -539,6 +545,7 @@ game.o: src/game.cpp include/game.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/dynamicnoninter.h \
 		include/dynamicobject.h \
 		include/dynamicinter.h \
@@ -593,6 +600,7 @@ dynamicinter.o: src/dynamicinter.cpp include/dynamicinter.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/fpsCam.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dynamicinter.o src/dynamicinter.cpp
 
@@ -607,6 +615,7 @@ button.o: src/button.cpp include/button.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/fpsCam.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o button.o src/button.cpp
 
@@ -619,7 +628,8 @@ player.o: src/player.cpp include/player.h \
 		include/mesh.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
-		include/testalgo.h
+		include/testalgo.h \
+		include/aabbtritest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o src/player.cpp
 
 inputmanager.o: src/inputmanager.cpp include/inputmanager.h \
@@ -633,10 +643,11 @@ inputmanager.o: src/inputmanager.cpp include/inputmanager.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/keyboardmanager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o inputmanager.o src/inputmanager.cpp
 
-aabbtritest.o: src/aabbtritest.cpp 
+aabbtritest.o: src/aabbtritest.cpp include/aabbtritest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o aabbtritest.o src/aabbtritest.cpp
 
 stand.o: src/stand.cpp include/stand.h \
@@ -649,7 +660,8 @@ stand.o: src/stand.cpp include/stand.h \
 		include/mesh.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
-		include/testalgo.h
+		include/testalgo.h \
+		include/aabbtritest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o stand.o src/stand.cpp
 
 attachedbutton.o: src/attachedbutton.cpp include/attachedbutton.h \
@@ -663,6 +675,7 @@ attachedbutton.o: src/attachedbutton.cpp include/attachedbutton.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/fpsCam.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attachedbutton.o src/attachedbutton.cpp
 
@@ -702,6 +715,7 @@ soundmaster.o: src/soundmaster.cpp include/soundmaster.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/fpsCam.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o soundmaster.o src/soundmaster.cpp
 
@@ -716,6 +730,7 @@ objectfactory.o: src/objectfactory.cpp include/objectfactory.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/stella.h \
 		include/sphere.h \
 		include/button.h \
@@ -730,7 +745,8 @@ objectfactory.o: src/objectfactory.cpp include/objectfactory.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objectfactory.o src/objectfactory.cpp
 
 testalgo.o: src/testalgo.cpp include/testalgo.h \
-		include/aabb.h
+		include/aabb.h \
+		include/aabbtritest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o testalgo.o src/testalgo.cpp
 
 oglrenderer.o: src/oglrenderer.cpp include/oglrenderer.h \
@@ -744,10 +760,22 @@ oglrenderer.o: src/oglrenderer.cpp include/oglrenderer.h \
 		include/stb_image.h \
 		include/tojsonconvert.h \
 		include/testalgo.h \
+		include/aabbtritest.h \
 		include/light.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o oglrenderer.o src/oglrenderer.cpp
 
-keyboardmanager.o: src/keyboardmanager.cpp include/keyboardmanager.h
+keyboardmanager.o: src/keyboardmanager.cpp include/keyboardmanager.h \
+		include/player.h \
+		include/fpsCam.h \
+		include/sceneobject.h \
+		include/aabb.h \
+		include/model.h \
+		include/shader.h \
+		include/mesh.h \
+		include/stb_image.h \
+		include/tojsonconvert.h \
+		include/testalgo.h \
+		include/aabbtritest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o keyboardmanager.o src/keyboardmanager.cpp
 
 ####### Install

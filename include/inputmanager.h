@@ -50,7 +50,7 @@ public:
     void processInput(double delta, bool withDeletion = false) { processKeyboardInput(delta, withDeletion);
                                                                  processMouseInput();    }
 
-    ProtectedInputManager() { keyManager = new ArrowManager(); }
+    ProtectedInputManager() { keyManager = new WasdManager(); }
 };
 
 

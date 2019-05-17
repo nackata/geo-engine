@@ -28,8 +28,8 @@ class ObjectFactory
         STAND
     };
 
-    static InterObjType interType(const std::string & id);
-    static NonInterObjType nonInterType(const std::string & id);
+    static InterObjType interType(std::string const& id);
+    static NonInterObjType nonInterType(std::string const& id);
 
     static std::array<StaticObject*, 3> prototypes;
 

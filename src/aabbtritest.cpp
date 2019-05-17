@@ -13,6 +13,7 @@
 /********************************************************/
 #include <math.h>
 #include <stdio.h>
+#include "../include/aabbtritest.h"
 
 #define X 0
 #define Y 1
@@ -107,7 +108,7 @@ int planeBoxOverlap(float normal[3],float d, float maxbox[3])
     rad = fa * boxhalfsize[X] + fb * boxhalfsize[Y];   \
     if(min>rad || max<-rad) return 0;
 
-int triBoxOverlap(float boxcenter[3],float boxhalfsize[3],float triverts[3][3])
+int AabbTriTest::triBoxOverlap(float boxcenter[3],float boxhalfsize[3],float triverts[3][3])
 {
 
   /*    use separating axis theorem to test overlap between triangle and box */

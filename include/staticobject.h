@@ -4,6 +4,7 @@
 
 class StaticObject : public Object
 {
+
 public:
     StaticObject(std::string modelPath) : Object(modelPath) {}
 
