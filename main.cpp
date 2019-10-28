@@ -28,9 +28,7 @@ int main()
     }    
 
     // save progress
-//    if (!game.save("firstSave.json")) std::cout << "problem saving" << std::endl;
-
-    std::cout << "lol kek" << std::endl;
+    if (!game.save("secondSave.json")) std::cout << "problem saving" << std::endl;
 
     return 0;
 }

@@ -26,6 +26,7 @@
 
 class Game
 {
+
     enum ObjectType
     {
         Interactive,
@@ -72,13 +73,12 @@ class Game
 
 public:
 
-    void drawScene() {
-        renderer->drawScene();
-        text.RenderText(currentStr.str, currentStr.x, currentStr.y, currentStr.scale, glm::vec3(1.0, 1.0, 1.0));
-        renderer->swapBuffer();
-    }
+    void drawScene();
 
-    void procInput(std::string const& name = "lol") { input.processInput(renderer->getDelta(), name); }
+    void procInput(std::string const& name = "lol")
+    {
+        input.processInput(renderer->getDelta(), name);
+    }
 
     void updateScene() {
         scene.updateScene(renderer->getDelta());
@@ -87,22 +87,7 @@ public:
 
     bool shouldClose();
 
-    Game() {
-        renderer = new OpenGlRenderer();
-        renderer->setCam(player.getCameraPtr());
-        renderer->init();
-        scene.setCam(player.getCameraPtr());
-        input.setPlayer(&player);
-        input.setWin(renderer->getWin());
-
-        text = ScreenText(renderer->getWin());
-        currentStr.str = "wasd - move | e - interact | mouse - camera control";
-        currentStr.x = 400;
-        currentStr.y = 100;
-        currentStr.scale = 1.0;
-
-        sound.loopAmbient();
-    }
+    Game();
 
 
     bool load(std::string fileName);

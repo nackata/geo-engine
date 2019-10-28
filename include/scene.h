@@ -49,6 +49,24 @@ public:
     void setCam(FpsCam * cam) { this->camera = cam; }
 
     Scene() {}
+    ~Scene() {
+        for (auto p : staticObj)
+        {
+            delete p;
+        }
+        for (auto p : dynNonInterObj)
+        {
+            delete p;
+        }
+        for (auto p : dynInterObj)
+        {
+            delete p;
+        }
+        for (auto p : phongLights)
+        {
+            delete p;
+        }
+    }
 };
 
 

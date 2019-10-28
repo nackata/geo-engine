@@ -266,17 +266,46 @@ void Game::addObject(Object *obj)
         player.addObj(obj);
 }
 
+void Game::drawScene() {
+    renderer->drawScene();
+
+    text.RenderText(currentStr.str,
+                    currentStr.x,
+                    currentStr.y,
+                    currentStr.scale,
+                    glm::vec3(1.0, 1.0, 1.0));
+
+    renderer->swapBuffer();
+}
+
 bool Game::shouldClose()
 {
     if (renderer->shouldClose()) return true;
 
     if (scene.finished())
     {
-       currentStr.str = "YOU WON! Press esc to leave";
-       currentStr.x = 600;
-       currentStr.y = 100;
-       currentStr.scale = 1.5;
-   }
+        currentStr.str = "YOU WON! Press esc to leave";
+        currentStr.x = 600;
+        currentStr.y = 100;
+        currentStr.scale = 1.5;
+    }
 
-   return false;
+    return false;
+}
+
+Game::Game() {
+    renderer = new OpenGlRenderer();
+    renderer->setCam(player.getCameraPtr());
+    renderer->init();
+    scene.setCam(player.getCameraPtr());
+    input.setPlayer(&player);
+    input.setWin(renderer->getWin());
+
+    text = ScreenText(renderer->getWin());
+    currentStr.str = "wasd - move | e - interact | mouse - camera control";
+    currentStr.x = 400;
+    currentStr.y = 100;
+    currentStr.scale = 1.0;
+
+    sound.loopAmbient();
 }
