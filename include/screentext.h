@@ -4,12 +4,15 @@
 #include <map>
 #include <string>
 
-#define GL_GLEXT_PROTOTYPES
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#define GLFW_DLL
+#define GL_GLEXT_PROTOTYPES
+#include "GLFW/glfw3.h"
+
+#include <lib/glm/glm.hpp>
+#include <lib/glm/gtc/matrix_transform.hpp>
+#include <lib/glm/gtc/type_ptr.hpp>
 
 #include <ft2build.h>
 #include FT_FREETYPE_H

@@ -3,7 +3,7 @@
 #include "fpsCam.h"
 #include "sceneobject.h"
 #include "aabb.h"
-#include <glm/glm.hpp>
+#include <lib/glm/glm.hpp>
 #include <vector>
 
 class Player

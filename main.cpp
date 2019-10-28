@@ -9,7 +9,10 @@ int main()
     Game game;
 
     // load level
-    game.load("firstSave.json");
+    if (!game.load("firstSave.json"))
+    {
+        std::cout << "Loading failed" << std::endl;
+    }
 
     while (!game.shouldClose()) //    game loop
     {
@@ -21,7 +24,7 @@ int main()
     }    
 
     // save progress
-    if (!game.save("firstSave.json")) std::cout << "problem saving" << std::endl;
+//    if (!game.save("firstSave.json")) std::cout << "problem saving" << std::endl;
 
     std::cout << "lol kek" << std::endl;
 
