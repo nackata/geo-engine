@@ -14,8 +14,8 @@ class Light
     glm::vec3 spec{0.5, 0.5, 0.5};
 
     float con = 1.0;
-    float lin = 0.009;
-    float quad = 0.0032;
+    float lin = 0.009f;
+    float quad = 0.0032f;
 public:
 
     void setPosition(glm::vec3 pos) { this->pos = pos; }

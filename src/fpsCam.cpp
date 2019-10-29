@@ -16,7 +16,7 @@ glm::mat4 FpsCam::getView()
 
 void FpsCam::processKeyBoardInput(keyBoardIn input, double deltaTime)
 {
-    float velocity = movementSpeed * deltaTime;
+    float velocity = movementSpeed * static_cast<float>(deltaTime);
 
     switch (input)
     {
@@ -44,15 +44,15 @@ void FpsCam::processKeyBoardInput(keyBoardIn input, double deltaTime)
 
 void FpsCam::processMouseMovement(double xoffset, double yoffset, bool constraint)
 {
-    yaw += xoffset * mouseSensivity;
-    pitch += -yoffset * mouseSensivity;
+    yaw += static_cast<float>(xoffset) * mouseSensivity;
+    pitch += -static_cast<float>(yoffset) * mouseSensivity;
 
     if (constraint)
     {
-        if (pitch > 89.0)
-            pitch = 89.0;
-        if (pitch < -89.0)
-            pitch = -89.0;
+        if (pitch > 89.0f)
+            pitch = 89.0f;
+        if (pitch < -89.0f)
+            pitch = -89.0f;
     }
 
     updateVec();

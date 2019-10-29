@@ -1,12 +1,5 @@
 #include "../include/renderer.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    // make sure the viewport matches the new window dimensions; note that width and
-    // height will be significantly larger than specified on retina displays.
-    glViewport(0, 0, width, height);
-}
-
 bool Renderer::init(int width, int height, std::string title)
 {
     if(!glfwInit()) return false;
@@ -27,22 +20,19 @@ bool Renderer::init(int width, int height, std::string title)
         return false;
     }
 
-
-
     this->window = wind;
 
     glfwMakeContextCurrent(window);
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
+        return false;
     }
 
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetInputMode(window, GLFW_STICKY_KEYS, 1);
 
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glViewport(0, 0, width, height);
 
     mainShader = Shader("common/shaders/vertex_shader.glsl", "common/shaders/fragment_shader.glsl");
@@ -63,6 +53,8 @@ bool Renderer::init(int width, int height, std::string title)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_MULTISAMPLE);
 
+
+//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     return true;
 }
@@ -99,12 +91,12 @@ void Renderer::drawScene()
 
     // --setting point lights
 
-    mainShader.setInt("light_amount", phongLights.size());
+    mainShader.setInt("light_amount", static_cast<int>(phongLights.size()));
 
 
-    for (int i = 0; static_cast<size_t>(i) < phongLights.size() && i < POINT_LIGHTS; ++i)
+    for (size_t i = 0; i < phongLights.size() && i < POINT_LIGHTS; ++i)
     {
-        std::string lightName = "pointLights[" + std::to_string(i) + "]";;
+        std::string lightName = "pointLights[" + std::to_string(i) + "]";
         mainShader.setVec3(lightName + ".position", glm::vec3(view * glm::vec4(phongLights[i]->position(), 1.0)));
         mainShader.setVec3(lightName + ".ambient", phongLights[i]->ambient());
         mainShader.setVec3(lightName + ".diffuse", phongLights[i]->diffuse());

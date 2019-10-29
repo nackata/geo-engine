@@ -22,7 +22,7 @@ public:
 
     RotatingCube(std::string fileName, std::string ID, glm::vec3 ax = glm::vec3(0.0, 1.0, 0.0)) : DynamicNonInter(fileName, ID), axis(ax)
     {
-        model.setDiffuseColor(getRgbColor(currentState));
+//        model.setDiffuseColor(getRgbColor(currentState));
     }
 
     QJsonObject save();
@@ -43,7 +43,7 @@ public:
 
     void setNeedState(state st){ needState = st; }
     void setCurrState(state st){ currentState = st;
-                                 model.setDiffuseColor(getRgbColor(currentState)); }
+                                 /*model.setDiffuseColor(getRgbColor(currentState));*/ }
 protected:
     state needState = STATE_BLACK;
     state currentState = STATE_WHITE;

@@ -103,7 +103,7 @@ Game::ObjectType Game::getClass(const std::string & id)
 
     int number = std::stoi(type) - 1;
 
-    return (ObjectType)number;
+    return static_cast<ObjectType>(number);
 }
 
 bool Game::load(std::string fileName)

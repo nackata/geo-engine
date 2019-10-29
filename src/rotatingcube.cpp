@@ -24,7 +24,6 @@ void RotatingCube::update(double deltaTime)
 
     if (currentState == needState) trigerred = true;
     else trigerred = false;
-
 }
 
 glm::vec3 RotatingCube::getRgbColor(RotatingCube::state st)
@@ -45,8 +44,6 @@ glm::vec3 RotatingCube::getRgbColor(RotatingCube::state st)
             return Color::getColor(COLOR_YELLOW);
         case RotatingCube::STATE_PURPLE:
             return Color::getColor(COLOR_PURPLE);
-        default:
-            return Color::getColor(COLOR_BLACK);
     }
 }
 

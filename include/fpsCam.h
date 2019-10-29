@@ -18,11 +18,11 @@ enum keyBoardIn
     DOWN
 };
 
-const float SPEED = 2.5;
-const float SENSIVITY = 0.1;
-const float ZOOM = 45.0;
-const float PITCH = 0.0;
-const float YAW = 90.0;
+const float SPEED = 2.5f;
+const float SENSIVITY = 0.1f;
+const float ZOOM = 45.0f;
+const float PITCH = 0.0f;
+const float YAW = 90.0f;
 
 const glm::vec3 CAM_POS(0.0, 0.0, 3.0);
 const glm::vec3 CAM_DIR(0.0, 0.0, -1.0);

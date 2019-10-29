@@ -134,23 +134,23 @@ int triBoxOverlap(float boxcenter[3],float boxhalfsize[3],float triverts[3][3])
 
    /* Bullet 3:  */
    /*  test the 9 tests first (this was faster) */
-   fex = fabs(e0[X]);
-   fey = fabs(e0[Y]);
-   fez = fabs(e0[Z]);
+   fex = static_cast<float>(fabs(e0[X]));
+   fey = static_cast<float>(fabs(e0[Y]));
+   fez = static_cast<float>(fabs(e0[Z]));
    AXISTEST_X01(e0[Z], e0[Y], fez, fey);
    AXISTEST_Y02(e0[Z], e0[X], fez, fex);
    AXISTEST_Z12(e0[Y], e0[X], fey, fex);
 
-   fex = fabs(e1[X]);
-   fey = fabs(e1[Y]);
-   fez = fabs(e1[Z]);
+   fex = static_cast<float>(fabs(e1[X]));
+   fey = static_cast<float>(fabs(e1[Y]));
+   fez = static_cast<float>(fabs(e1[Z]));
    AXISTEST_X01(e1[Z], e1[Y], fez, fey);
    AXISTEST_Y02(e1[Z], e1[X], fez, fex);
    AXISTEST_Z0(e1[Y], e1[X], fey, fex);
 
-   fex = fabs(e2[X]);
-   fey = fabs(e2[Y]);
-   fez = fabs(e2[Z]);
+   fex = static_cast<float>(fabs(e2[X]));
+   fey = static_cast<float>(fabs(e2[Y]));
+   fez = static_cast<float>(fabs(e2[Z]));
    AXISTEST_X2(e2[Z], e2[Y], fez, fey);
    AXISTEST_Y1(e2[Z], e2[X], fez, fex);
    AXISTEST_Z12(e2[Y], e2[X], fey, fex);
