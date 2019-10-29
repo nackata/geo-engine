@@ -10,7 +10,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     lib/glad/src/glad.c \
-    lib/glm/detail/glm.cpp \
     src/fpsCam.cpp \
     src/mesh.cpp \
     src/model.cpp \
@@ -36,7 +35,6 @@ HEADERS += \
     include/mesh.h \
     include/model.h \
     include/shader.h \
-    include/stb_image.h \
     include/sceneobject.h \
     include/staticobject.h \
     include/room.h \
@@ -68,9 +66,11 @@ DISTFILES += \
     common/shaders/text_vs.glsl
 
 
+# LINUX libs
 #LIBS += -lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lXxf86vm -lXinerama -lXcursor -lassimp -lpng -lz
 
-LIBS += -lgdi32 -lopengl32 -luser32 -lkernel32 -lglu32
+# Win libs (no need (glfw3dll))
+#LIBS += -lgdi32 -lopengl32 -luser32 -lkernel32 -lglu32
 
 INCLUDEPATH += $$PWD/lib/glad/include
 INCLUDEPATH += $$PWD/lib

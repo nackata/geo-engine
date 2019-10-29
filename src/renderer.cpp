@@ -14,7 +14,7 @@ bool Renderer::init(int width, int height, std::string title)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-//    glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_SAMPLES, 4);
 
 
 
@@ -42,7 +42,7 @@ bool Renderer::init(int width, int height, std::string title)
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetInputMode(window, GLFW_STICKY_KEYS, 1);
 
-//    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glViewport(0, 0, width, height);
 
     mainShader = Shader("common/shaders/vertex_shader.glsl", "common/shaders/fragment_shader.glsl");
@@ -55,8 +55,8 @@ bool Renderer::init(int width, int height, std::string title)
     mainShader.setMat4("projection", projection);
 
 
-    mainShader.setVec3("dirLight.ambient", 0.1, 0.1, 0.1);
-    mainShader.setVec3("dirLight.diffuse", 0.3, 0.3, 0.3);
+    mainShader.setVec3("dirLight.ambient", 0.1f, 0.1f, 0.1f);
+    mainShader.setVec3("dirLight.diffuse", 0.3f, 0.3f, 0.3f);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
