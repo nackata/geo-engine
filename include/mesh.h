@@ -1,12 +1,13 @@
 #pragma once
 // Requires glfw3 for processing input
 
-#define GL_GLEXT_PROTOTYPES
-#include <GLFW/glfw3.h>
 
+#include <glad/glad.h>
+#define GLFW_DLL
+#define GL_GLEXT_PROTOTYPES
+#include "GLFW/glfw3.h"
 
 #include "shader.h"
-
 #include <vector>
 #include <string>
 

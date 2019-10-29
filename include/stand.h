@@ -2,7 +2,7 @@
 
 #include "dynamicnoninter.h"
 
-#include <glm/glm.hpp>
+#include <lib/glm/glm.hpp>
 
 class Stand : public DynamicNonInter
 {

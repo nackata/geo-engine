@@ -1,7 +1,10 @@
 #pragma once
 
+#include <glad/glad.h>
+
 #define GL_GLEXT_PROTOTYPES
-#include <GLFW/glfw3.h>
+#define GLFW_DLL
+#include "GLFW/glfw3.h"
 
 #include <vector>
 #include <string>
@@ -14,11 +17,11 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/quaternion.hpp>
+#include <lib/glm/glm.hpp>
+#include <lib/glm/gtc/matrix_transform.hpp>
+#include <lib/glm/gtc/quaternion.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/quaternion.hpp>
+#include <lib/glm/gtx/quaternion.hpp>
 
 #include "stb_image.h"
 

@@ -2,8 +2,8 @@
 
 #include "dynamicobject.h"
 #include "fpsCam.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include <lib/glm/glm.hpp>
+#include <lib/glm/gtc/matrix_transform.hpp>
 
 class DynamicInter : public DynamicObject
 {

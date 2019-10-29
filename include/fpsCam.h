@@ -3,8 +3,8 @@
 //@todo direction down(up) low speed (movement vector XoY)
 
 // connect GLM LIB
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+#include "lib/glm/glm.hpp"
+#include "lib/glm/gtc/matrix_transform.hpp"
 
 // default parameters
 

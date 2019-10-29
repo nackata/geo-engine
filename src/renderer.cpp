@@ -1,5 +1,11 @@
 #include "../include/renderer.h"
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    // make sure the viewport matches the new window dimensions; note that width and
+    // height will be significantly larger than specified on retina displays.
+    glViewport(0, 0, width, height);
+}
 
 bool Renderer::init(int width, int height, std::string title)
 {
@@ -8,24 +14,35 @@ bool Renderer::init(int width, int height, std::string title)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-    glfwWindowHint(GLFW_SAMPLES, 4);
+//    glfwWindowHint(GLFW_SAMPLES, 4);
+
+
 
     GLFWwindow * wind = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
-    if (wind == NULL)
+    if (wind == nullptr)
     {
         std::cerr << "error creating window" << std::endl;
         glfwTerminate();
         return false;
     }
 
+
+
     this->window = wind;
 
     glfwMakeContextCurrent(window);
 
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
+
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetInputMode(window, GLFW_STICKY_KEYS, 1);
 
+//    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glViewport(0, 0, width, height);
 
     mainShader = Shader("common/shaders/vertex_shader.glsl", "common/shaders/fragment_shader.glsl");
@@ -45,6 +62,7 @@ bool Renderer::init(int width, int height, std::string title)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_MULTISAMPLE);
+
 
     return true;
 }

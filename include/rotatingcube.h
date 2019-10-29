@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dynamicnoninter.h"
-#include <glm/glm.hpp>
+#include <lib/glm/glm.hpp>
 #include "color.h"
 
 class RotatingCube : public DynamicNonInter

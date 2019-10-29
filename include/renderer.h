@@ -1,7 +1,9 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
+#define GLFW_DLL
+#include "GLFW/glfw3.h"
 #include <glm/glm.hpp>
 
 #include "shader.h"
@@ -39,7 +41,7 @@ public:
 
     void setCam(FpsCam * cam) { this->cam = cam; }
 
-    bool init(int width = 1920, int height = 1080, std::string title = "geoRIDDLE");
+    bool init(int width = 1800, int height = 900, std::string title = "geoRIDDLE");
 
     double getTime() { return glfwGetTime(); }
     double getDelta() { return delta; }

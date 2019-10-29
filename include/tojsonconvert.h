@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QJsonObject>
-#include <glm/glm.hpp>
+#include <lib/glm/glm.hpp>
 
 class ToJson
 {

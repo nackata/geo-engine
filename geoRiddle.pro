@@ -9,6 +9,8 @@ CONFIG += c++11
 TEMPLATE = app
 
 SOURCES += main.cpp \
+    lib/glad/src/glad.c \
+    lib/glm/detail/glm.cpp \
     src/fpsCam.cpp \
     src/mesh.cpp \
     src/model.cpp \
@@ -55,7 +57,8 @@ HEADERS += \
     include/attachedbutton.h \
     include/tojsonconvert.h \
     include/screentext.h \
-    include/soundmaster.h
+    include/soundmaster.h \
+
 
 DISTFILES += \
     common/shaders/fragment_shader.glsl \
@@ -64,16 +67,32 @@ DISTFILES += \
     common/shaders/text_frag.glsl \
     common/shaders/text_vs.glsl
 
-unix:!macx: LIBS += -L~/libs/freetype-2.9.1/build/ -lfreetype
 
-INCLUDEPATH += ~/libs/freetype-2.9.1/include
-DEPENDPATH += ~/libs/freetype-2.9.1/include
+#LIBS += -lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lXxf86vm -lXinerama -lXcursor -lassimp -lpng -lz
 
-unix:!macx: PRE_TARGETDEPS += ~/libs/freetype-2.9.1/build/libfreetype.a
+LIBS += -lgdi32 -lopengl32 -luser32 -lkernel32 -lglu32
 
-LIBS += -lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lXxf86vm -lXinerama -lXcursor -lassimp -lpng -lz
+INCLUDEPATH += $$PWD/lib/glad/include
+INCLUDEPATH += $$PWD/lib
+INCLUDEPATH += $$PWD/lib/stb_image
 
-unix:!macx: LIBS += -L$$PWD/../../../../libs/irrKlang-64bit-1.6.0/bin/linux-gcc-64/ -lIrrKlang
+win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/Assimp/lib/x64/ -lassimp-vc141-mtd
 
-INCLUDEPATH += $$PWD/../../../../libs/irrKlang-64bit-1.6.0/include
-DEPENDPATH += $$PWD/../../../../libs/irrKlang-64bit-1.6.0/include
+INCLUDEPATH += $$PWD/lib/Assimp/include
+DEPENDPATH += $$PWD/lib/Assimp/include/assimp
+
+
+win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/freetype/win64/ -lfreetype
+
+INCLUDEPATH += $$PWD/lib/freetype/include
+DEPENDPATH += $$PWD/lib/freetype/include
+
+win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/irrKlang-64bit-1.6.0/lib/Winx64-visualStudio/ -lirrKlang
+
+INCLUDEPATH += $$PWD/lib/irrKlang-64bit-1.6.0/include
+DEPENDPATH += $$PWD/lib/irrKlang-64bit-1.6.0/include
+
+win32: LIBS += -L$$PWD/lib/glfw-3.3.bin.WIN64/lib-vc2017/ -lglfw3dll
+
+INCLUDEPATH += $$PWD/lib/glfw-3.3.bin.WIN64/include
+DEPENDPATH += $$PWD/lib/glfw-3.3.bin.WIN364/include
