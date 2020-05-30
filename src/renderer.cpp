@@ -10,7 +10,6 @@ bool Renderer::init(int width, int height, std::string title)
     glfwWindowHint(GLFW_SAMPLES, 4);
 
 
-
     GLFWwindow * wind = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
     if (wind == nullptr)
@@ -52,9 +51,11 @@ bool Renderer::init(int width, int height, std::string title)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_MULTISAMPLE);
+//    glEnable(GL_CULL_FACE);
+//    glEnable(GL_FRAMEBUFFER_SRGB);
 
 
-//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+//    glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 
     return true;
 }
@@ -112,6 +113,7 @@ void Renderer::drawScene()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // rendering
+
 
     for (Object * ob : objects)
     {

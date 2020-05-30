@@ -83,6 +83,14 @@ class Model
 
         void setDiffuseColor(glm::vec3 color);
 
+        void setCullFaceFront(bool cff)
+        {
+            for (auto & m : meshes)
+            {
+                m.setCullFaceFront(cff);
+            }
+        }
+
     private:
         /*  Model Data  */
         std::vector<Mesh> meshes;

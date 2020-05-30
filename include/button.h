@@ -11,8 +11,3 @@ public:
 
     QJsonObject save();
 };
-
-
-
-
-

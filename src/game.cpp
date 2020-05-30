@@ -193,7 +193,13 @@ bool Game::jsonStringToEntities(std::string & jsonStr)
     {
         QJsonObject staticObj = staticObjArr.at(i).toObject();
         Room * room = new Room(staticObj.value("fileName").toString().toStdString());
-        room->collisionCheck = true;
+        room->collisionCheck = staticObj.value("collision_check").toBool();
+        bool cullInverse = staticObj.value("cull_inverse").toBool();
+
+        if (cullInverse)
+        {
+            room->model.setCullFaceFront(false);
+        }
 
         scene.addObj(room);
         renderer.addObj(room);

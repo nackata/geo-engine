@@ -23,11 +23,11 @@ class Renderer
 
     Shader mainShader;
 
-    GLFWwindow * window;
+    GLFWwindow * window = nullptr;
 
-    FpsCam * cam;
+    FpsCam * cam = nullptr;
 
-    double delta;
+    double delta = 0.0;
     double lastFrame = 0.0;
 
     bool dirLight = true;
@@ -37,7 +37,7 @@ public:
 
     GLFWwindow * getWin() { return window; }
 
-    Renderer() { this->cam = cam; }
+    Renderer() {}
 
     void setCam(FpsCam * cam) { this->cam = cam; }
 

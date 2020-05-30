@@ -21,6 +21,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <array>
 
 class Game
 {
@@ -55,7 +56,12 @@ class Game
 
     // main parts of game
 
+    double m_time = 0.0;
+    int m_counter = 0;
+    bool m_fpsMeasure = false;
+
     ScreenStr currentStr;
+    ScreenStr fpsStr;
 
     InputManager input;
     Player player;
@@ -64,11 +70,24 @@ class Game
     ScreenText text;
     SoundMaster sound;
 
+    void measureFps(double delta)
+    {
+        m_time += delta;
+        ++m_counter;
+        if (m_time > 1.0)
+        {
+            fpsStr.str = std::to_string(m_counter);
+            m_counter = 0;
+            m_time = 0.0;
+        }
+    }
+
 public:
 
     void drawScene() {
         renderer.drawScene();
         text.RenderText(currentStr.str, currentStr.x, currentStr.y, currentStr.scale, glm::vec3(1.0, 1.0, 1.0));
+        text.RenderText(fpsStr.str, fpsStr.x, fpsStr.y, fpsStr.scale, glm::vec3(1.0, 1.0, 1.0));
         renderer.swapBuffer();
     }
 
@@ -77,7 +96,11 @@ public:
     void updateScene() {
         scene.updateScene(renderer.getDelta());
         sound.update(scene.dynamicInterObjects());
+
+        if (m_fpsMeasure) measureFps(renderer.getDelta());
     }
+
+
 
     bool shouldClose();
 
@@ -94,6 +117,12 @@ public:
          currentStr.y = 100;
          currentStr.scale = 1.0;
 
+         fpsStr.str = "lolol";
+         fpsStr.x = 10;
+         fpsStr.y = 500;
+         fpsStr.scale = 1.0;
+
+
          sound.loopAmbient();
     }
 
@@ -101,6 +130,11 @@ public:
     bool load(std::string fileName);
 
     bool save(std::string fileName);
+
+    void setFpsMeasure(bool fpsMeasure)
+    {
+        m_fpsMeasure = fpsMeasure;
+    }
 };
 
 

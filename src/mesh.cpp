@@ -32,10 +32,22 @@ void Mesh::Draw(Shader shader)
     }
     glActiveTexture(GL_TEXTURE0);
 
+    if (!m_cullFaceFront)
+    {
+        glCullFace(GL_FRONT);
+    }
+
+
+
     // draw mesh
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, static_cast<int>(indices.size()), GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
+
+    if (!m_cullFaceFront)
+    {
+        glCullFace(GL_BACK);
+    }
 }
 
 void Mesh::setupMesh()

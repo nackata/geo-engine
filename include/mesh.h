@@ -34,7 +34,10 @@ public:
     std::vector<unsigned int> & getIndices() { return indices; }
 
     void setDiffuseColor(glm::vec3 color);
+
+    void setCullFaceFront(bool cullFaceFront) { m_cullFaceFront = cullFaceFront; }
 private:
+    bool m_cullFaceFront = true;
     //   Mesh Data 
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;

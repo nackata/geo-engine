@@ -46,10 +46,34 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath)
     glCompileShader(fragment);
     checkCompileErrors(fragment, "FRAGMENT");
 
+    // TEST GEOMETRY (DELETE)
+//    std::string geometryCode;
+//    std::ifstream gShaderFile;
+//    gShaderFile.open("common/shaders/geometry_shader.glsl");
+//    std::stringstream gShaderStream;
+//    gShaderStream << gShaderFile.rdbuf();
+//    gShaderFile.close();
+//    geometryCode = gShaderStream.str();
+
+//    unsigned int geometry;
+//    const char * gShaderCode = geometryCode.c_str();
+//    geometry = glCreateShader(GL_GEOMETRY_SHADER);
+//    glShaderSource(geometry, 1, &gShaderCode, NULL);
+//    glCompileShader(geometry);
+//    checkCompileErrors(geometry, "GEOMETRY");
+
+    ///////////////////////////////
+
+
     // shader Program
     ID = glCreateProgram();
     glAttachShader(ID, vertex);
     glAttachShader(ID, fragment);
+
+    ////////// DELETE
+//    glAttachShader(ID, geometry);
+    //////////
+
     glLinkProgram(ID);
     checkCompileErrors(ID, "PROGRAM");
 

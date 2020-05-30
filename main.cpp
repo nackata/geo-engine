@@ -14,6 +14,8 @@ int main()
         std::cout << "Loading failed" << std::endl;
     }
 
+    game.setFpsMeasure(true);
+
     while (!game.shouldClose()) //    game loop
     {
         game.procInput();
