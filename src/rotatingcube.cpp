@@ -2,6 +2,7 @@
 
 void RotatingCube::update(double deltaTime)
 {
+
     double needVel = velocity;
 
     bool trig = false;
@@ -20,7 +21,7 @@ void RotatingCube::update(double deltaTime)
 
     double angle = needVel * deltaTime;
 
-    model.addRotation(axis, glm::radians(angle));
+//    model.addRotation(axis, glm::radians(angle));
 
     if (currentState == needState) trigerred = true;
     else trigerred = false;
